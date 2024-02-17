@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import AsideWeatherData from "./AsideWeatherData/AsideWeatherData";
 import Container from "./Container/Container";
 import Title from "./Title/Title";
@@ -21,11 +21,18 @@ function App() {
   const [forecastByDay, setForecastByDay] = useState<ForecastByDay | null>(
     null
   );
+  const [search, setSearch] = useState<string>("");
   const [isActive, setIsActive] = useState(false);
 
   const handleCurrentTrip = (thisTrip: Trip) => {
     setCurrentTrip(thisTrip);
   };
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.currentTarget.value);
+  };
+
+  // console.log(search);
 
   const handleToggleOpen = () => {
     setIsActive(!isActive);
@@ -51,7 +58,7 @@ function App() {
     <Container>
       <div className={styles.container}>
         <Title />
-        <SearchBar />
+        <SearchBar value={search} onChange={handleSearchChange} />
         <div className={styles.containerTrips}>
           <TripList
             trips={trips}
