@@ -7,16 +7,7 @@ import WeatherList from "./components/WeatherList/WeatherList";
 import { getWeatherByDates, getWeatherByDay } from "./api/timelineWeatherAPI";
 import { firstTrip } from "./data/firstTrip";
 import { Trip } from "./types/tripProps";
-
-interface ForecastByDay {
-  address: string;
-  days: {
-    icon: string;
-    temp: number;
-    datetime: string;
-    description: string;
-  }[];
-}
+import { ForecastByDay } from "./types/forecastByDay";
 
 function App() {
   const [currentTrip, setCurrentTrip] = useState(firstTrip);

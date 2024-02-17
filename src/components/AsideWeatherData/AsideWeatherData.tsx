@@ -18,9 +18,8 @@ function AsideWeatherData({
   return (
     <div>
       <h2>{address}</h2>
-
-      <img src={`Weather.${icon}`} alt={description} width={100} />
-      <p>{temp}</p>
+      <img src={Weather[icon]} alt={description} width={100} />
+      <p>{temp} &#8451;</p>
       <p>{datetime}</p>
     </div>
   );
