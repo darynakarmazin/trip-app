@@ -22,6 +22,7 @@ function App() {
     null
   );
   const [search, setSearch] = useState<string>("");
+  const [filteredTrips, setFilteredTrips] = useState<Trip[]>([]);
   const [isActive, setIsActive] = useState(false);
 
   const handleCurrentTrip = (thisTrip: Trip) => {
@@ -37,6 +38,14 @@ function App() {
   const handleToggleOpen = () => {
     setIsActive(!isActive);
   };
+
+  useEffect(() => {
+    const filteredArray = trips.filter((trip) =>
+      trip.city.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredTrips(filteredArray);
+  }, [search, trips]);
+  console.log(filteredTrips);
 
   useEffect(() => {
     if (!currentTrip) {
@@ -61,7 +70,7 @@ function App() {
         <SearchBar value={search} onChange={handleSearchChange} />
         <div className={styles.containerTrips}>
           <TripList
-            trips={trips}
+            trips={filteredTrips}
             selectTrip={handleCurrentTrip}
             currentTrip={currentTrip}
           />
