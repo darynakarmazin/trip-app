@@ -1,4 +1,4 @@
-import { formatDateString } from "../../data/firstTrip";
+import { formatDateString } from "../../servises/formatDateString";
 import { TripProps } from "../../types/tripProps";
 
 function TripItem({ trip }: TripProps) {
