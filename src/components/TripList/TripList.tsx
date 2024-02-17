@@ -1,7 +1,7 @@
 import { TripsProps } from "../../types/tripProps";
 import TripItem from "../TripItem/TripItem";
 
-function TripsList({ trips, selectTrip }: TripsProps) {
+function TripsList({ trips, selectTrip, currentTrip }: TripsProps) {
   return (
     <ul>
       {trips.map((trip) => (
@@ -9,6 +9,7 @@ function TripsList({ trips, selectTrip }: TripsProps) {
           key={trip.index}
           trip={trip}
           selectTrip={() => selectTrip(trip)}
+          currentTrip={currentTrip}
         ></TripItem>
       ))}
     </ul>

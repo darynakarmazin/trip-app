@@ -1,9 +1,12 @@
 import { formatDateString } from "../../servises/formatDateString";
 import { TripProps } from "../../types/tripProps";
+import styles from "./TripItem.module.css";
 
-function TripItem({ trip, selectTrip }: TripProps) {
+function TripItem({ trip, selectTrip, currentTrip }: TripProps) {
+  const isCurrent = currentTrip.index === trip.index;
+
   return (
-    <li onClick={selectTrip}>
+    <li onClick={selectTrip} className={isCurrent ? styles.current : ""}>
       <img
         src={trip.imageUrl}
         alt={`${trip.city}city view`}
