@@ -13,8 +13,10 @@ axios.defaults.baseURL =
 
 export const getWeatherByDates = async (trip: Trip) => {
   try {
+    const startDateString = trip.startData.toISOString().split("T")[0];
+    const endDateString = trip.endData.toISOString().split("T")[0];
     const response = await axios.get(
-      `${trip.city}/${trip.startData}/${trip.endData}?unitGroup=metric&include=days&iconSet=icons2&key=${API_KEY}&contentType=json`
+      `${trip.city}/${startDateString}/${endDateString}?unitGroup=metric&include=days&iconSet=icons2&key=${API_KEY}&contentType=json`
     );
     return response.data;
   } catch (error) {

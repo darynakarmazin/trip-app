@@ -1,4 +1,4 @@
-import { Weather } from "../img/icons/Weather";
+import { Weather } from "../../img/icons/Weather";
 
 interface AsideWeatherDataProps {
   address: string;

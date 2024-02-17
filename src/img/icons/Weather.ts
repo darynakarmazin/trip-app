@@ -21,7 +21,7 @@ import thunderShowersNight from "./thunder-showers-night.svg";
 import thunder from "./thunder.svg";
 import wind from "./wind.svg";
 
-import { WeatherIcons } from "../../../types/weatherIcons";
+import { WeatherIcons } from "../../types/weatherIcons";
 
 export const Weather: WeatherIcons = {
   clearDay,
@@ -29,21 +29,21 @@ export const Weather: WeatherIcons = {
   cloudy,
   fog,
   hail,
-  partlyCloudyDay,
-  partlyCloudyNight,
-  rainSnowShowersDay,
-  rainSnowShowersNight,
-  rainSnow,
+  "partly-cloudy-day": partlyCloudyDay,
+  "partly-cloudy-night": partlyCloudyNight,
+  "rain-snow-showers-day": rainSnowShowersDay,
+  "rain-snow-showers-night": rainSnowShowersNight,
+  "rain-snow": rainSnow,
   rain,
-  showersDay,
-  showersNight,
+  "showers-day": showersDay,
+  "showers-night": showersNight,
   sleet,
-  snowShowersDay,
-  snowShowersNight,
+  "snow-showers-day": snowShowersDay,
+  "snow-showers-night": snowShowersNight,
   snow,
-  thunderRain,
-  thunderShowersDay,
-  thunderShowersNight,
+  "thunder-rain": thunderRain,
+  "thunder-showers-day": thunderShowersDay,
+  "thunder-showers-night": thunderShowersNight,
   thunder,
   wind,
 };

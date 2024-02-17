@@ -8,10 +8,12 @@ import { getWeatherByDates, getWeatherByDay } from "./api/timelineWeatherAPI";
 import { firstTrip } from "./data/firstTrip";
 import { Trip } from "./types/tripProps";
 import { ForecastByDay } from "./types/forecastByDay";
+import { ForecastByDates } from "./types/ForecastByDates";
 
 function App() {
   const [currentTrip, setCurrentTrip] = useState(firstTrip);
-  const [forecastByDates, setForecastByDates] = useState(null);
+  const [forecastByDates, setForecastByDates] =
+    useState<ForecastByDates | null>(null);
   const [forecastByDay, setForecastByDay] = useState<ForecastByDay | null>(
     null
   );
@@ -26,9 +28,6 @@ function App() {
         const forecastByDay = await getWeatherByDay(currentTrip);
         setForecastByDates(forecastByDates);
         setForecastByDay(forecastByDay);
-
-        console.log(forecastByDates);
-        console.log(forecastByDay);
       } catch (error) {
         console.log(error);
       }
@@ -37,9 +36,13 @@ function App() {
   }, [currentTrip]);
   return (
     <Container>
-      <Title></Title>
-      <TripList></TripList>
-      <WeatherList></WeatherList>
+      <div>
+        <Title></Title>
+        <TripList></TripList>
+        {forecastByDates && forecastByDates.days && (
+          <WeatherList forecastByDates={forecastByDates.days}></WeatherList>
+        )}
+      </div>
       {forecastByDay ? (
         <AsideWeatherData
           address={forecastByDay.address}
