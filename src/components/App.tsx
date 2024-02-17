@@ -46,11 +46,14 @@ function App() {
       <div className={styles.container}>
         <Title></Title>
         <SearchBar></SearchBar>
-        <TripList
-          trips={trips}
-          selectTrip={handleCurrentTrip}
-          currentTrip={currentTrip}
-        ></TripList>
+        <div className={styles.containerTrips}>
+          <TripList
+            trips={trips}
+            selectTrip={handleCurrentTrip}
+            currentTrip={currentTrip}
+          ></TripList>
+          <button>+ Add trip</button>
+        </div>
         {forecastByDates && forecastByDates.days && (
           <WeatherList forecastByDates={forecastByDates.days}></WeatherList>
         )}

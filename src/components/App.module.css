@@ -4,3 +4,8 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.containerTrips {
+  display: flex;
+  gap: 24px;
+}
