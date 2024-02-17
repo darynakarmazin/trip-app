@@ -1,5 +1,11 @@
+export interface TripsProps {
+  trips: Trip[];
+  selectTrip: (trip: Trip) => void;
+}
+
 export interface TripProps {
   trip: Trip;
+  selectTrip: () => void;
 }
 
 export interface Trip {

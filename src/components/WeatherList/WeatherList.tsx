@@ -11,8 +11,7 @@ function WeatherList({ forecastByDates }: WeatherListProps) {
           <p>{getDayOfWeek(day.datetime)}</p>
           <img src={Weather[day.icon]} alt={day.description} width={100} />
           <p>
-            <span>{day.tempmax} &#8451;</span>/
-            <span>{day.tempmin} &#8451;</span>
+            <span>{day.tempmax}&#176;</span>/<span>{day.tempmin}&#176;</span>
           </p>
         </li>
       ))}

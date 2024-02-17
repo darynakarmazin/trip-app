@@ -1,9 +1,9 @@
 import { formatDateString } from "../../servises/formatDateString";
 import { TripProps } from "../../types/tripProps";
 
-function TripItem({ trip }: TripProps) {
+function TripItem({ trip, selectTrip }: TripProps) {
   return (
-    <li>
+    <li onClick={selectTrip}>
       <img
         src={trip.imageUrl}
         alt={`${trip.city}city view`}

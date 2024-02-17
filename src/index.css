@@ -24,6 +24,11 @@ li {
   margin: 0;
 }
 
+ul,
+ol {
+  list-style: none;
+}
+
 a,
 button {
   border: none;

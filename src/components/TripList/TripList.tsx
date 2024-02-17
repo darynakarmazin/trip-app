@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { TripsProps } from "../../types/tripProps";
 import TripItem from "../TripItem/TripItem";
-import { firstTrip } from "../../data/firstTrip";
 
-function TripsList() {
-  const [trips, setTrips] = useState([firstTrip]);
+function TripsList({ trips, selectTrip }: TripsProps) {
   return (
     <ul>
       {trips.map((trip) => (
-        <TripItem key={trip.index} trip={trip}></TripItem>
+        <TripItem
+          key={trip.index}
+          trip={trip}
+          selectTrip={() => selectTrip(trip)}
+        ></TripItem>
       ))}
     </ul>
   );

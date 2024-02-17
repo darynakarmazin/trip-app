@@ -12,12 +12,17 @@ import { ForecastByDates } from "./types/ForecastByDates";
 import SearchBar from "./components/SearchBar/SearchBar";
 
 function App() {
-  const [currentTrip, setCurrentTrip] = useState(firstTrip);
+  const [trips, setTrips] = useState([firstTrip]);
+  const [currentTrip, setCurrentTrip] = useState<Trip | null>(null);
   const [forecastByDates, setForecastByDates] =
     useState<ForecastByDates | null>(null);
   const [forecastByDay, setForecastByDay] = useState<ForecastByDay | null>(
     null
   );
+
+  const handleCurrentTrip = (thisTrip: Trip) => {
+    setCurrentTrip(thisTrip);
+  };
 
   useEffect(() => {
     if (!currentTrip) {
@@ -40,7 +45,7 @@ function App() {
       <div>
         <Title></Title>
         <SearchBar></SearchBar>
-        <TripList></TripList>
+        <TripList trips={trips} selectTrip={handleCurrentTrip}></TripList>
         {forecastByDates && forecastByDates.days && (
           <WeatherList forecastByDates={forecastByDates.days}></WeatherList>
         )}
