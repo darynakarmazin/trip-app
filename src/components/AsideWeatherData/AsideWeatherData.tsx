@@ -1,4 +1,5 @@
 import { Weather } from "../../img/icons/Weather";
+import { getDayOfWeek } from "../../servises/getDayOfWeek";
 
 interface AsideWeatherDataProps {
   address: string;
@@ -17,10 +18,12 @@ function AsideWeatherData({
 }: AsideWeatherDataProps) {
   return (
     <div>
+      <p>{getDayOfWeek(datetime)}</p>
+      <div>
+        <img src={Weather[icon]} alt={description} width={100} />
+        <p>{temp} &#8451;</p>
+      </div>
       <h2>{address}</h2>
-      <img src={Weather[icon]} alt={description} width={100} />
-      <p>{temp} &#8451;</p>
-      <p>{datetime}</p>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { firstTrip } from "./data/firstTrip";
 import { Trip } from "./types/tripProps";
 import { ForecastByDay } from "./types/forecastByDay";
 import { ForecastByDates } from "./types/ForecastByDates";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 function App() {
   const [currentTrip, setCurrentTrip] = useState(firstTrip);
@@ -38,6 +39,7 @@ function App() {
     <Container>
       <div>
         <Title></Title>
+        <SearchBar></SearchBar>
         <TripList></TripList>
         {forecastByDates && forecastByDates.days && (
           <WeatherList forecastByDates={forecastByDates.days}></WeatherList>
