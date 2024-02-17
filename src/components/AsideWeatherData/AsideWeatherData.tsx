@@ -14,12 +14,15 @@ function AsideWeatherData({
 }: AsideWeatherDataProps) {
   return (
     <div className={styles.container}>
-      <p>{getDayOfWeek(datetime)}</p>
-      <div>
-        <img src={WeatherAside[icon]} alt={description} width={100} />
-        <p>{temp} &#8451;</p>
+      <p className={styles.dayOfWeek}>{getDayOfWeek(datetime)}</p>
+      <div className={styles.temp}>
+        <img src={WeatherAside[icon]} alt={description} width={80} />
+        <p>
+          {temp}
+          <sup>&#8451;</sup>
+        </p>
       </div>
-      <h2>{address}</h2>
+      <h2 className={styles.cityName}>{address}</h2>
       <Counter tripStart={tripStart} />
     </div>
   );

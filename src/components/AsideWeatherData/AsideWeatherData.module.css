@@ -2,4 +2,37 @@
   width: 33.3%;
   background-color: #100e3a;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .dayOfWeek {
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+
+  .temp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+
+    p {
+      font-weight: 500;
+      font-size: 46px;
+      sup {
+        font-weight: 300;
+        font-size: 24px;
+      }
+    }
+  }
+
+  .cityName {
+    font-weight: 300;
+    font-size: 20px;
+    margin-bottom: 100px;
+  }
 }
