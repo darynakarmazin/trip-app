@@ -11,6 +11,7 @@ import { ForecastByDay } from "../types/forecastByDay";
 import { ForecastByDates } from "../types/ForecastByDates";
 import SearchBar from "./SearchBar/SearchBar";
 import styles from "./App.module.css";
+import Modal from "./Modal/Modal";
 
 function App() {
   const [trips, setTrips] = useState([firstTrip]);
@@ -20,9 +21,14 @@ function App() {
   const [forecastByDay, setForecastByDay] = useState<ForecastByDay | null>(
     null
   );
+  const [isActive, setIsActive] = useState(false);
 
   const handleCurrentTrip = (thisTrip: Trip) => {
     setCurrentTrip(thisTrip);
+  };
+
+  const handleToggleOpen = () => {
+    setIsActive(!isActive);
   };
 
   useEffect(() => {
@@ -44,18 +50,18 @@ function App() {
   return (
     <Container>
       <div className={styles.container}>
-        <Title></Title>
-        <SearchBar></SearchBar>
+        <Title />
+        <SearchBar />
         <div className={styles.containerTrips}>
           <TripList
             trips={trips}
             selectTrip={handleCurrentTrip}
             currentTrip={currentTrip}
-          ></TripList>
-          <button>+ Add trip</button>
+          />
+          <button onClick={handleToggleOpen}>+ Add trip</button>
         </div>
         {forecastByDates && forecastByDates.days && (
-          <WeatherList forecastByDates={forecastByDates.days}></WeatherList>
+          <WeatherList forecastByDates={forecastByDates.days} />
         )}
       </div>
       {forecastByDay && (
@@ -66,8 +72,9 @@ function App() {
           datetime={forecastByDay.days[0].datetime}
           description={forecastByDay.days[0].description}
           tripStart={currentTrip.startData}
-        ></AsideWeatherData>
+        />
       )}
+      {isActive && <Modal handleToggleOpen={handleToggleOpen} />}
     </Container>
   );
 }
