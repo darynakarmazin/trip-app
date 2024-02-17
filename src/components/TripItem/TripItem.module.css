@@ -1,3 +1,32 @@
+.tripItem {
+  width: 150px;
+
+  .tripItemTrumb {
+    overflow: hidden;
+
+    .tripItemImg {
+      display: block;
+      object-fit: cover;
+      height: 150px;
+    }
+  }
+
+  .tripItemCaption {
+    padding: 8px;
+
+    .tripItemCity {
+      font-weight: 500;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .tripItemData {
+      font-size: 8px;
+      color: gray;
+    }
+  }
+}
+
 .current {
   border: 1px solid lightblue;
 }

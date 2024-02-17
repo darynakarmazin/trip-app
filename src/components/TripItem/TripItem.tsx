@@ -6,17 +6,24 @@ function TripItem({ trip, selectTrip, currentTrip }: TripProps) {
   const isCurrent = currentTrip.index === trip.index;
 
   return (
-    <li onClick={selectTrip} className={isCurrent ? styles.current : ""}>
-      <img
-        src={trip.imageUrl}
-        alt={`${trip.city}city view`}
-        loading="lazy"
-        width="200"
-      />
-      <h1>{trip.city}</h1>
-      <p>
-        {formatDateString(trip.startData)} - {formatDateString(trip.endData)}
-      </p>
+    <li
+      onClick={selectTrip}
+      className={`${isCurrent ? styles.current : ""} ${styles.tripItem}`}
+    >
+      <div className={styles.tripItemTrumb}>
+        <img
+          className={styles.tripItemImg}
+          src={trip.imageUrl}
+          alt={`${trip.city}city view`}
+          width="150"
+        />
+      </div>
+      <div className={styles.tripItemCaption}>
+        <h3 className={styles.tripItemCity}>{trip.city}</h3>
+        <p className={styles.tripItemData}>
+          {formatDateString(trip.startData)} - {formatDateString(trip.endData)}
+        </p>
+      </div>
     </li>
   );
 }
