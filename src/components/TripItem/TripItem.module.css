@@ -1,5 +1,6 @@
 .tripItem {
   width: 150px;
+  border: 0.25px solid rgb(232, 232, 232);
 
   .tripItemTrumb {
     overflow: hidden;
@@ -28,5 +29,5 @@
 }
 
 .current {
-  border: 1px solid lightblue;
+  border: 1.5px solid lightblue;
 }

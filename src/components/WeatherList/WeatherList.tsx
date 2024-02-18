@@ -5,7 +5,7 @@ import styles from "./WeatherList.module.css";
 
 function WeatherList({ forecastByDates }: WeatherListProps) {
   return (
-    <div>
+    <div className={styles.containerWeatherList}>
       <h2 className={styles.title}>Week</h2>
       <ul className={styles.byDatesList}>
         {forecastByDates.map((day) => (
