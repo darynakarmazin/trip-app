@@ -75,8 +75,8 @@ function Modal({ handleToggleModal, createTrip }: ModalProps) {
       index: nanoid(),
       city: selectedCity?.name,
       imageUrl: selectedCity?.imageUrl,
-      startDate: startDate,
-      endDate: endDate,
+      startData: startDate,
+      endData: endDate,
     });
     handleToggleModal();
   };

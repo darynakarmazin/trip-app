@@ -7,6 +7,7 @@
 .byDatesList {
   display: flex;
   gap: 24px;
+  flex-wrap: wrap;
 
   .byDatesItem {
     width: 64px;

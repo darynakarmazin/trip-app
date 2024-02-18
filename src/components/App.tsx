@@ -29,8 +29,6 @@ function App() {
     setTrips([newTrip, ...trips]);
   };
 
-  console.log(trips);
-
   const handleCurrentTrip = (thisTrip: Trip) => {
     setCurrentTrip(thisTrip);
   };

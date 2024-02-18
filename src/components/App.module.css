@@ -9,6 +9,7 @@
   display: flex;
   gap: 24px;
   width: 680px;
+  height: 195px;
   overflow-x: scroll;
 
   .addTripsBtn {
