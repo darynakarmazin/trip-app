@@ -12,7 +12,7 @@ In the project directory, you can run:
 
 ## Learn More
 
-Test task. Trip-app...
+Test task. Trip-app. Introducing a user-friendly Trip app built using React.js where travelers can effortlessly plan their journeys with ease. With a sleek interface, users can scroll through their trips, each accompanied by a countdown timer to the start date and today's weather forecast. Additionally, selecting a trip unveils a detailed weather forecast for each day of the journey. Adding a new trip is a breeze with a modal window, allowing users to select a city from a predefined list, set start and end dates within the next 15 days, and seamlessly integrate it into their itinerary. The app further enhances user experience with features like trip sorting, intuitive navigation buttons, and seamless login via third-party providers for a personalized experience. Powered by the Visual Crossing Weather API, this app ensures travelers are equipped with accurate weather insights to make the most of their adventures.
 
 Teclology stack [typescript, css3, reactjs, openapi, axios, hmtl5, nanoid]
 
