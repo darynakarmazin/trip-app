@@ -9,10 +9,11 @@ import {
   getAvailableDates,
   formatDate,
 } from "../../servises/formatTimeForChoose";
+import { Trip } from "../../types/tripProps";
 
 interface ModalProps {
   handleToggleModal: () => void;
-  createTrip: any;
+  createTrip: (newTrip: Trip) => void;
 }
 
 function Modal({ handleToggleModal, createTrip }: ModalProps) {
@@ -71,13 +72,16 @@ function Modal({ handleToggleModal, createTrip }: ModalProps) {
     e.preventDefault();
     const startDate = selectedStartDate ? new Date(selectedStartDate) : null;
     const endDate = selectedEndDate ? new Date(selectedEndDate) : null;
-    createTrip({
-      index: nanoid(),
-      city: selectedCity?.name,
-      imageUrl: selectedCity?.imageUrl,
-      startData: startDate,
-      endData: endDate,
-    });
+    if (selectedCity?.name && selectedCity?.imageUrl && startDate && endDate) {
+      createTrip({
+        index: nanoid(),
+        city: selectedCity?.name,
+        imageUrl: selectedCity?.imageUrl,
+        startData: startDate,
+        endData: endDate,
+      });
+    }
+
     handleToggleModal();
   };
 

@@ -9,6 +9,7 @@ import { firstTrip } from "../data/firstTrip";
 import { Trip } from "../types/tripProps";
 import { ForecastByDay } from "../types/forecastByDay";
 import { ForecastByDates } from "../types/ForecastByDates";
+import { onNextClick, onPreviousClick } from "../servises/scrollHelpers";
 import SearchBar from "./SearchBar/SearchBar";
 import styles from "./App.module.css";
 import Modal from "./Modal/Modal";
@@ -36,21 +37,9 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const containerRef = useRef(null);
 
-  const handleCreateNewTrip = (newTrip: Trip) => {
-    setTrips([newTrip, ...trips]);
-  };
-
-  const handleCurrentTrip = (thisTrip: Trip) => {
-    setCurrentTrip(thisTrip);
-  };
-
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.currentTarget.value);
-  };
-
-  const handleToggleModal = () => {
-    setIsActive(!isActive);
-  };
+  useEffect(() => {
+    localStorage.setItem("trips", JSON.stringify(trips));
+  }, [trips]);
 
   useEffect(() => {
     const filteredArray = trips.filter((trip) =>
@@ -76,6 +65,22 @@ function App() {
     getWeather(currentTrip);
   }, [currentTrip]);
 
+  const handleCreateNewTrip = (newTrip: Trip) => {
+    setTrips([newTrip, ...trips]);
+  };
+
+  const handleCurrentTrip = (thisTrip: Trip) => {
+    setCurrentTrip(thisTrip);
+  };
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.currentTarget.value);
+  };
+
+  const handleToggleModal = () => {
+    setIsActive(!isActive);
+  };
+
   const handleSortByDate = (direction: string) => {
     const sortedTrips = [...filteredTrips].sort((a, b) => {
       if (direction === "up") {
@@ -93,20 +98,13 @@ function App() {
   };
 
   const handleNextClick = () => {
-    if (containerRef.current) {
-      (containerRef.current as HTMLElement).scrollLeft += 100;
-    }
+    onNextClick(containerRef);
   };
 
   const handlePreviousClick = () => {
-    if (containerRef.current) {
-      (containerRef.current as HTMLElement).scrollLeft -= 100;
-    }
+    onPreviousClick(containerRef);
   };
 
-  useEffect(() => {
-    localStorage.setItem("trips", JSON.stringify(trips));
-  }, [trips]);
   return (
     <Container>
       <div className={styles.container}>
