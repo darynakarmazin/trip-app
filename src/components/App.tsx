@@ -14,7 +14,18 @@ import styles from "./App.module.css";
 import Modal from "./Modal/Modal";
 
 function App() {
-  const [trips, setTrips] = useState([firstTrip]);
+  const [trips, setTrips] = useState<Trip[]>(() => {
+    const savedTrips = localStorage.getItem("trips");
+    return savedTrips
+      ? JSON.parse(savedTrips, (key, value) => {
+          if (key.endsWith("Data")) {
+            return new Date(value);
+          }
+          return value;
+        })
+      : [firstTrip];
+  });
+  console.log(trips);
   const [currentTrip, setCurrentTrip] = useState<Trip>(trips[0]);
   const [forecastByDates, setForecastByDates] =
     useState<ForecastByDates | null>(null);
@@ -64,6 +75,10 @@ function App() {
     };
     getWeather(currentTrip);
   }, [currentTrip]);
+
+  useEffect(() => {
+    localStorage.setItem("trips", JSON.stringify(trips));
+  }, [trips]);
   return (
     <Container>
       <div className={styles.container}>
