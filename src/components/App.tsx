@@ -33,9 +33,7 @@ function App() {
     setSearch(e.currentTarget.value);
   };
 
-  // console.log(search);
-
-  const handleToggleOpen = () => {
+  const handleToggleModal = () => {
     setIsActive(!isActive);
   };
 
@@ -45,7 +43,6 @@ function App() {
     );
     setFilteredTrips(filteredArray);
   }, [search, trips]);
-  console.log(filteredTrips);
 
   useEffect(() => {
     if (!currentTrip) {
@@ -74,7 +71,7 @@ function App() {
             selectTrip={handleCurrentTrip}
             currentTrip={currentTrip}
           />
-          <button onClick={handleToggleOpen}>+ Add trip</button>
+          <button onClick={handleToggleModal}>+ Add trip</button>
         </div>
         {forecastByDates && forecastByDates.days && (
           <WeatherList forecastByDates={forecastByDates.days} />
@@ -90,7 +87,7 @@ function App() {
           tripStart={currentTrip.startData}
         />
       )}
-      {isActive && <Modal handleToggleOpen={handleToggleOpen} />}
+      {isActive && <Modal handleToggleModal={handleToggleModal} />}
     </Container>
   );
 }
