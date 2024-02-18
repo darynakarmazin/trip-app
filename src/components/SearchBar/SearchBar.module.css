@@ -1,5 +1,9 @@
 .imputForm {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
 
   .imputIcon {
     position: absolute;
@@ -13,5 +17,16 @@
     background-color: #f0eded;
     border: none;
     border-radius: 8px;
+  }
+
+  .containerSortBtn {
+    display: flex;
+    gap: 4px;
+    .sortBtn {
+      padding: 8px;
+      border-radius: 8px;
+      background-color: #f0eded;
+      color: grey;
+    }
   }
 }

@@ -75,6 +75,22 @@ function App() {
     getWeather(currentTrip);
   }, [currentTrip]);
 
+  const handleSortByDate = (direction: string) => {
+    const sortedTrips = [...filteredTrips].sort((a, b) => {
+      if (direction === "up") {
+        return (
+          new Date(a.startData).getTime() - new Date(b.startData).getTime()
+        );
+      } else if (direction === "down") {
+        return (
+          new Date(b.startData).getTime() - new Date(a.startData).getTime()
+        );
+      }
+      return 0;
+    });
+    setFilteredTrips(sortedTrips);
+  };
+
   useEffect(() => {
     localStorage.setItem("trips", JSON.stringify(trips));
   }, [trips]);
@@ -82,7 +98,11 @@ function App() {
     <Container>
       <div className={styles.container}>
         <Title />
-        <SearchBar value={search} onChange={handleSearchChange} />
+        <SearchBar
+          value={search}
+          onChange={handleSearchChange}
+          sortByDate={handleSortByDate}
+        />
         <div className={styles.containerTrips}>
           <TripList
             trips={filteredTrips}
