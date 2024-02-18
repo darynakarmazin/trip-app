@@ -25,7 +25,6 @@ function App() {
         })
       : [firstTrip];
   });
-  console.log(trips);
   const [currentTrip, setCurrentTrip] = useState<Trip>(trips[0]);
   const [forecastByDates, setForecastByDates] =
     useState<ForecastByDates | null>(null);
