@@ -1,4 +1,4 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent, useRef } from "react";
 import AsideWeatherData from "./AsideWeatherData/AsideWeatherData";
 import Container from "./Container/Container";
 import Title from "./Title/Title";
@@ -34,6 +34,7 @@ function App() {
   const [search, setSearch] = useState<string>("");
   const [filteredTrips, setFilteredTrips] = useState<Trip[]>([]);
   const [isActive, setIsActive] = useState(false);
+  const containerRef = useRef(null);
 
   const handleCreateNewTrip = (newTrip: Trip) => {
     setTrips([newTrip, ...trips]);
@@ -91,6 +92,18 @@ function App() {
     setFilteredTrips(sortedTrips);
   };
 
+  const handleNextClick = () => {
+    if (containerRef.current) {
+      (containerRef.current as HTMLElement).scrollLeft += 100;
+    }
+  };
+
+  const handlePreviousClick = () => {
+    if (containerRef.current) {
+      (containerRef.current as HTMLElement).scrollLeft -= 100;
+    }
+  };
+
   useEffect(() => {
     localStorage.setItem("trips", JSON.stringify(trips));
   }, [trips]);
@@ -103,17 +116,31 @@ function App() {
           onChange={handleSearchChange}
           sortByDate={handleSortByDate}
         />
-        <div className={styles.containerTrips}>
-          <TripList
-            trips={filteredTrips}
-            selectTrip={handleCurrentTrip}
-            currentTrip={currentTrip}
-          />
-          <div>
-            <button className={styles.addTripsBtn} onClick={handleToggleModal}>
-              + <br />
-              Add trip
-            </button>
+        <div className={styles.containerTripsBtn}>
+          <button className={styles.scrollBtn} onClick={handlePreviousClick}>
+            &#8592;
+          </button>
+          <button
+            className={`${styles.scrollBtn} ${styles.scrollBtnRight}`}
+            onClick={handleNextClick}
+          >
+            &#8594;
+          </button>
+          <div ref={containerRef} className={styles.containerTrips}>
+            <TripList
+              trips={filteredTrips}
+              selectTrip={handleCurrentTrip}
+              currentTrip={currentTrip}
+            />
+            <div>
+              <button
+                className={styles.addTripsBtn}
+                onClick={handleToggleModal}
+              >
+                + <br />
+                Add trip
+              </button>
+            </div>
           </div>
         </div>
         {forecastByDates && forecastByDates.days && (
