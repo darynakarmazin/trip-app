@@ -9,17 +9,56 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.25);
   z-index: 1200;
-}
 
-.modalContainer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 0 10px 5px gray;
-  z-index: 10;
-  width: 640px;
-  height: 480px;
+  .modalContainer {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 0 10px 5px gray;
+
+    .modalCloseBtn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+    }
+
+    .modalTitle {
+      padding: 16px;
+      border-bottom: 1px solid lightgray;
+      font-weight: 500;
+      font-size: 20px;
+    }
+
+    .modalSelects {
+      height: 360px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modalControlBtn {
+      padding: 16px;
+      border-top: 1px solid lightgray;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+
+      .modalControlReset {
+        border: 1px solid lightgray;
+        border-radius: 2px;
+        padding: 6px;
+      }
+
+      .modalControlSubmit {
+        border: 1px solid rgb(0, 128, 255);
+        background: rgb(0, 128, 255);
+        color: white;
+        border-radius: 2px;
+        padding: 6px;
+      }
+    }
+  }
 }

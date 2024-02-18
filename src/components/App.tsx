@@ -25,6 +25,12 @@ function App() {
   const [filteredTrips, setFilteredTrips] = useState<Trip[]>([]);
   const [isActive, setIsActive] = useState(false);
 
+  const handleCreateNewTrip = (newTrip: Trip) => {
+    setTrips([newTrip, ...trips]);
+  };
+
+  console.log(trips);
+
   const handleCurrentTrip = (thisTrip: Trip) => {
     setCurrentTrip(thisTrip);
   };
@@ -71,7 +77,12 @@ function App() {
             selectTrip={handleCurrentTrip}
             currentTrip={currentTrip}
           />
-          <button onClick={handleToggleModal}>+ Add trip</button>
+          <div>
+            <button className={styles.addTripsBtn} onClick={handleToggleModal}>
+              + <br />
+              Add trip
+            </button>
+          </div>
         </div>
         {forecastByDates && forecastByDates.days && (
           <WeatherList forecastByDates={forecastByDates.days} />
@@ -87,7 +98,12 @@ function App() {
           tripStart={currentTrip.startData}
         />
       )}
-      {isActive && <Modal handleToggleModal={handleToggleModal} />}
+      {isActive && (
+        <Modal
+          handleToggleModal={handleToggleModal}
+          createTrip={handleCreateNewTrip}
+        />
+      )}
     </Container>
   );
 }

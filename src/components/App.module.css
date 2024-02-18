@@ -8,4 +8,12 @@
 .containerTrips {
   display: flex;
   gap: 24px;
+  width: 680px;
+  overflow-x: scroll;
+
+  .addTripsBtn {
+    height: 150px;
+    width: 150px;
+    font-weight: 500;
+  }
 }
