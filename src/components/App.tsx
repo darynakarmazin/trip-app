@@ -8,11 +8,12 @@ import { getWeatherByDates, getWeatherByDay } from "../api/timelineWeatherAPI";
 import { firstTrip } from "../data/firstTrip";
 import { Trip } from "../types/tripProps";
 import { ForecastByDay } from "../types/forecastByDay";
-import { ForecastByDates } from "../types/ForecastByDates";
+import { ForecastByDates } from "../types/forecastByDates";
 import { onNextClick, onPreviousClick } from "../servises/scrollHelpers";
 import SearchBar from "./SearchBar/SearchBar";
 import styles from "./App.module.css";
 import Modal from "./Modal/Modal";
+import ScrollButtons from "./ScrollButtons/ScrollButtons";
 
 function App() {
   const [trips, setTrips] = useState<Trip[]>(() => {
@@ -115,15 +116,10 @@ function App() {
           sortByDate={handleSortByDate}
         />
         <div className={styles.containerTripsBtn}>
-          <button className={styles.scrollBtn} onClick={handlePreviousClick}>
-            &#8592;
-          </button>
-          <button
-            className={`${styles.scrollBtn} ${styles.scrollBtnRight}`}
-            onClick={handleNextClick}
-          >
-            &#8594;
-          </button>
+          <ScrollButtons
+            handlePreviousClick={handlePreviousClick}
+            handleNextClick={handleNextClick}
+          />
           <div ref={containerRef} className={styles.containerTrips}>
             <TripList
               trips={filteredTrips}
