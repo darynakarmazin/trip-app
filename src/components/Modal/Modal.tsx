@@ -90,7 +90,15 @@ function Modal({ handleToggleModal, createTrip }: ModalProps) {
         <h1 className={styles.modalTitle}>Create trip</h1>
         <form onSubmit={handleCreateTrip}>
           <div className={styles.modalSelects}>
-            <select defaultValue="" onChange={handleCityChange}>
+            <label className={styles.modalFormLabel} htmlFor="selectCity">
+              <sup>*</sup>City
+            </label>
+            <select
+              className={styles.modalFormSelect}
+              id="selectCity"
+              defaultValue=""
+              onChange={handleCityChange}
+            >
               <option value="" disabled hidden>
                 Please select a city
               </option>
@@ -100,7 +108,15 @@ function Modal({ handleToggleModal, createTrip }: ModalProps) {
                 </option>
               ))}
             </select>
-            <select defaultValue="" onChange={handleStartDateChange}>
+            <label className={styles.modalFormLabel} htmlFor="selectStartDate">
+              <sup>*</sup>Start date
+            </label>
+            <select
+              className={styles.modalFormSelect}
+              id="selectStartDate"
+              defaultValue=""
+              onChange={handleStartDateChange}
+            >
               <option value="" disabled hidden>
                 Please select a start date
               </option>
@@ -110,7 +126,15 @@ function Modal({ handleToggleModal, createTrip }: ModalProps) {
                 </option>
               ))}
             </select>
-            <select defaultValue="" onChange={handleEndDateChange}>
+            <label className={styles.modalFormLabel} htmlFor="selectEndDate">
+              <sup>*</sup>End date
+            </label>
+            <select
+              className={styles.modalFormSelect}
+              id="selectEndDate"
+              defaultValue=""
+              onChange={handleEndDateChange}
+            >
               <option value="" disabled hidden>
                 Please select an end date
               </option>

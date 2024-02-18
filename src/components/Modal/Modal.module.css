@@ -37,6 +37,21 @@
       padding: 16px;
       display: flex;
       flex-direction: column;
+      gap: 8px;
+
+      .modalFormLabel {
+        font-size: 14px;
+        margin-bottom: 2px;
+
+        sup {
+          color: red;
+        }
+      }
+
+      .modalFormSelect {
+        padding: 8px;
+        border: 1px solid lightgray;
+      }
     }
 
     .modalControlBtn {
@@ -49,7 +64,7 @@
       .modalControlReset {
         border: 1px solid lightgray;
         border-radius: 2px;
-        padding: 6px;
+        padding: 6px 8px;
       }
 
       .modalControlSubmit {
@@ -57,7 +72,7 @@
         background: rgb(0, 128, 255);
         color: white;
         border-radius: 2px;
-        padding: 6px;
+        padding: 6px 8px;
       }
     }
   }
