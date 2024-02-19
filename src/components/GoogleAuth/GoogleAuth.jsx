@@ -1,17 +1,14 @@
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
 const GoogleAuth = () => {
-  // const clientId =
-  //   "2014903271-c0ilok0bph5rnjmi9muqluhsk8hc8ft3.apps.googleusercontent.com";
-
   return (
-    // <GoogleOAuthProvider clientId={clientId}>
     <GoogleLogin
       onSuccess={(credentialResponse) => {
         axios
           .post("https://trip-app-backend-oyms.onrender.com/google-auth", {
-            credentialResponse,
+            credential: credentialResponse.credential,
+            client_id: credentialResponse.client_id,
           })
           .then(function (response) {
             console.log(response);
@@ -25,7 +22,6 @@ const GoogleAuth = () => {
         console.log("Login Failed");
       }}
     />
-    // </GoogleOAuthProvider>
   );
 };
 
