@@ -15,6 +15,11 @@ import styles from "./App.module.css";
 import Modal from "./Modal/Modal";
 import ScrollButtons from "./ScrollButtons/ScrollButtons";
 import AddButton from "./AddButton/AddButton";
+import GoogleAuth from "./GoogleAuth/GoogleAuth";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
+const clientId =
+  "2014903271-c0ilok0bph5rnjmi9muqluhsk8hc8ft3.apps.googleusercontent.com";
 
 function App() {
   const [trips, setTrips] = useState<Trip[]>(() => {
@@ -108,49 +113,52 @@ function App() {
   };
 
   return (
-    <Container>
-      <div className={styles.container}>
-        <Title />
-        <SearchBar
-          value={search}
-          onChange={handleSearchChange}
-          sortByDate={handleSortByDate}
-        />
-        <div className={styles.containerTripsBtn}>
-          <ScrollButtons
-            handlePreviousClick={handlePreviousClick}
-            handleNextClick={handleNextClick}
+    <GoogleOAuthProvider clientId={clientId}>
+      <Container>
+        <div className={styles.container}>
+          <Title />
+          <SearchBar
+            value={search}
+            onChange={handleSearchChange}
+            sortByDate={handleSortByDate}
           />
-          <div ref={containerRef} className={styles.containerTrips}>
-            <TripList
-              trips={filteredTrips}
-              selectTrip={handleCurrentTrip}
-              currentTrip={currentTrip}
+          <div className={styles.containerTripsBtn}>
+            <ScrollButtons
+              handlePreviousClick={handlePreviousClick}
+              handleNextClick={handleNextClick}
             />
-            <AddButton handleToggleModal={handleToggleModal} />
+            <div ref={containerRef} className={styles.containerTrips}>
+              <TripList
+                trips={filteredTrips}
+                selectTrip={handleCurrentTrip}
+                currentTrip={currentTrip}
+              />
+              <AddButton handleToggleModal={handleToggleModal} />
+            </div>
           </div>
+          {forecastByDates && forecastByDates.days && (
+            <WeatherList forecastByDates={forecastByDates.days} />
+          )}
         </div>
-        {forecastByDates && forecastByDates.days && (
-          <WeatherList forecastByDates={forecastByDates.days} />
+        {forecastByDay && (
+          <AsideWeatherData
+            address={forecastByDay.address}
+            icon={forecastByDay.days[0].icon}
+            temp={forecastByDay.days[0].temp}
+            datetime={forecastByDay.days[0].datetime}
+            description={forecastByDay.days[0].description}
+            tripStart={currentTrip.startData}
+          />
         )}
-      </div>
-      {forecastByDay && (
-        <AsideWeatherData
-          address={forecastByDay.address}
-          icon={forecastByDay.days[0].icon}
-          temp={forecastByDay.days[0].temp}
-          datetime={forecastByDay.days[0].datetime}
-          description={forecastByDay.days[0].description}
-          tripStart={currentTrip.startData}
-        />
-      )}
-      {isActive && (
-        <Modal
-          handleToggleModal={handleToggleModal}
-          createTrip={handleCreateNewTrip}
-        />
-      )}
-    </Container>
+        {isActive && (
+          <Modal
+            handleToggleModal={handleToggleModal}
+            createTrip={handleCreateNewTrip}
+          />
+        )}
+        <GoogleAuth />
+      </Container>
+    </GoogleOAuthProvider>
   );
 }
 
