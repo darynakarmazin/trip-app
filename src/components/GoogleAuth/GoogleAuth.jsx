@@ -1,4 +1,5 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import axios from "axios";
 
 const GoogleAuth = () => {
   // const clientId =
@@ -8,6 +9,16 @@ const GoogleAuth = () => {
     // <GoogleOAuthProvider clientId={clientId}>
     <GoogleLogin
       onSuccess={(credentialResponse) => {
+        axios
+          .post("https://trip-app-backend-oyms.onrender.com/google-auth", {
+            credentialResponse,
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         console.log(credentialResponse);
       }}
       onError={() => {
