@@ -7,8 +7,7 @@ const GoogleAuth = () => {
       onSuccess={(credentialResponse) => {
         axios
           .post("https://trip-app-backend-oyms.onrender.com/google-auth", {
-            credential: credentialResponse.credential,
-            client_id: credentialResponse.client_id,
+            credentialResponse,
           })
           .then(function (response) {
             console.log(response);
