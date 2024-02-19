@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   width: 33.3%;
   background-color: #100e3a;
   color: #ffffff;
@@ -6,6 +7,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  .googleBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
 
   .dayOfWeek {
     font-weight: 700;

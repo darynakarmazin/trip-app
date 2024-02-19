@@ -15,7 +15,6 @@ import styles from "./App.module.css";
 import Modal from "./Modal/Modal";
 import ScrollButtons from "./ScrollButtons/ScrollButtons";
 import AddButton from "./AddButton/AddButton";
-import GoogleAuth from "./GoogleAuth/GoogleAuth";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const clientId =
@@ -156,7 +155,6 @@ function App() {
             createTrip={handleCreateNewTrip}
           />
         )}
-        <GoogleAuth />
       </Container>
     </GoogleOAuthProvider>
   );
