@@ -1,7 +1,11 @@
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
-const GoogleAuth = () => {
+interface GoogleAuthProps {
+  setAuthUser: (newValue: any) => void;
+}
+
+const GoogleAuth = ({ setAuthUser }: GoogleAuthProps) => {
   return (
     <GoogleLogin
       onSuccess={(credentialResponse) => {
@@ -11,6 +15,7 @@ const GoogleAuth = () => {
             clientId: credentialResponse.clientId,
           })
           .then(function (response) {
+            setAuthUser(response.data.data);
             console.log(response);
           })
           .catch(function (error) {

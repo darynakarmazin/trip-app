@@ -21,6 +21,8 @@ const clientId =
   "2014903271-c0ilok0bph5rnjmi9muqluhsk8hc8ft3.apps.googleusercontent.com";
 
 function App() {
+  const [authUser, setAuthUser] = useState(null);
+  console.log(authUser);
   const [trips, setTrips] = useState<Trip[]>(() => {
     const savedTrips = localStorage.getItem("trips");
     return savedTrips
@@ -147,6 +149,7 @@ function App() {
             datetime={forecastByDay.days[0].datetime}
             description={forecastByDay.days[0].description}
             tripStart={currentTrip.startData}
+            setAuthUser={setAuthUser}
           />
         )}
         {isActive && (
