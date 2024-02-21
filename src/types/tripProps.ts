@@ -11,7 +11,7 @@ export interface TripProps {
 }
 
 export interface Trip {
-  index: string;
+  _id: string;
   city: string;
   imageUrl: string;
   startData: Date;

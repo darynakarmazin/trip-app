@@ -7,7 +7,7 @@ function TripsList({ trips, selectTrip, currentTrip }: TripsProps) {
     <ul className={styles.tripsList}>
       {trips.map((trip) => (
         <TripItem
-          key={trip.index}
+          key={trip._id}
           trip={trip}
           selectTrip={() => selectTrip(trip)}
           currentTrip={currentTrip}
