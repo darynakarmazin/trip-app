@@ -15,11 +15,11 @@ function AsideWeatherData({
   setAuthUser,
   authUser,
 }: AsideWeatherDataProps) {
-  console.log(authUser);
+  console.log(authUser.token);
   return (
     <div className={styles.container}>
       <div className={styles.googleBtn}>
-        {authUser && authUser.token ? (
+        {authUser.token ? (
           <div>Welcome,{authUser.user.email} </div>
         ) : (
           <GoogleAuth setAuthUser={setAuthUser} />
