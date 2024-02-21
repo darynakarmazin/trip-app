@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/trip-app/static/css/main.7c03526e.css",
-    "main.js": "/trip-app/static/js/main.fd4f52b1.js",
+    "main.js": "/trip-app/static/js/main.1329085c.js",
     "static/media/snow-showers-night.svg": "/trip-app/static/media/snow-showers-night.91f635208aa0c51ba9cd493a03f399e2.svg",
     "static/media/snow-showers-night-aside.svg": "/trip-app/static/media/snow-showers-night-aside.75dad8a287a6a5a661d931072c87a259.svg",
     "static/media/snow-showers-day.svg": "/trip-app/static/media/snow-showers-day.4b481263984dc78c37aa7940db18e8b7.svg",
@@ -50,10 +50,10 @@
     "static/media/search.svg": "/trip-app/static/media/search.552248cfe3bd3c3407f987244978bd48.svg",
     "static/media/cross.svg": "/trip-app/static/media/cross.b06b2fd3c8d21b62c8fa146355af2ae1.svg",
     "main.7c03526e.css.map": "/trip-app/static/css/main.7c03526e.css.map",
-    "main.fd4f52b1.js.map": "/trip-app/static/js/main.fd4f52b1.js.map"
+    "main.1329085c.js.map": "/trip-app/static/js/main.1329085c.js.map"
   },
   "entrypoints": [
     "static/css/main.7c03526e.css",
-    "static/js/main.fd4f52b1.js"
+    "static/js/main.1329085c.js"
   ]
 }
