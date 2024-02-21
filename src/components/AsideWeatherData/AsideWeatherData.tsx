@@ -13,11 +13,17 @@ function AsideWeatherData({
   description,
   tripStart,
   setAuthUser,
+  authUser,
 }: AsideWeatherDataProps) {
+  console.log(authUser.token);
   return (
     <div className={styles.container}>
       <div className={styles.googleBtn}>
-        <GoogleAuth setAuthUser={setAuthUser} />
+        {authUser.token ? (
+          <div>Welcome,{authUser.user.email} </div>
+        ) : (
+          <GoogleAuth setAuthUser={setAuthUser} />
+        )}
       </div>
       <p className={styles.dayOfWeek}>{getDayOfWeek(datetime)}</p>
       <div className={styles.temp}>

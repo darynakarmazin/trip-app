@@ -150,6 +150,7 @@ function App() {
             description={forecastByDay.days[0].description}
             tripStart={currentTrip.startData}
             setAuthUser={setAuthUser}
+            authUser={authUser}
           />
         )}
         {isActive && (

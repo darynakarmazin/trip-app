@@ -6,4 +6,5 @@ export interface AsideWeatherDataProps {
   description: string;
   tripStart: Date;
   setAuthUser: (newValue: any) => void;
+  authUser: any;
 }
