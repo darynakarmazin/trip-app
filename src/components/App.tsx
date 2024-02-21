@@ -22,7 +22,6 @@ const clientId =
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
-  console.log(authUser);
   const [trips, setTrips] = useState<Trip[]>(() => {
     const savedTrips = localStorage.getItem("trips");
     return savedTrips
