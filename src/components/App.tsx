@@ -16,12 +16,19 @@ import Modal from "./Modal/Modal";
 import ScrollButtons from "./ScrollButtons/ScrollButtons";
 import AddButton from "./AddButton/AddButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+// import axios from "axios";
 
 const clientId =
   "2014903271-c0ilok0bph5rnjmi9muqluhsk8hc8ft3.apps.googleusercontent.com";
 
+type AuthUser = {
+  token: string;
+  user: { email: string };
+};
+
 function App() {
-  const [authUser, setAuthUser] = useState(null);
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+  console.log(authUser);
   const [trips, setTrips] = useState<Trip[]>(() => {
     const savedTrips = localStorage.getItem("trips");
     return savedTrips
@@ -33,6 +40,7 @@ function App() {
         })
       : [firstTrip];
   });
+  console.log(trips);
   const [currentTrip, setCurrentTrip] = useState<Trip>(trips[0]);
   const [forecastByDates, setForecastByDates] =
     useState<ForecastByDates | null>(null);
@@ -44,8 +52,31 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const containerRef = useRef(null);
 
+  // useEffect(() => {
+  //   if (authUser && authUser.token) {
+  //     const fetchData = async () => {
+  //       try {
+  //         const response = await axios.get(
+  //           "https://trip-app-backend-oyms.onrender.com/api/trips",
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${authUser.token}`,
+  //             },
+  //           }
+  //         );
+  //         setTrips(response.data.data.result);
+  //       } catch (error) {
+  //         console.error("Помилка при виконанні запиту:", error);
+  //       }
+  //     };
+  //     fetchData();
+  //   }
+  // }, [authUser]);
+
   useEffect(() => {
+    // if (!authUser || !authUser.token) {
     localStorage.setItem("trips", JSON.stringify(trips));
+    // }
   }, [trips]);
 
   useEffect(() => {
