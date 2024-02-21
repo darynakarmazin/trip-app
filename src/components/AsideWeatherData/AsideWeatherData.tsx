@@ -15,7 +15,6 @@ function AsideWeatherData({
   setAuthUser,
   authUser,
 }: AsideWeatherDataProps) {
-  console.log(authUser);
   return (
     <div className={styles.container}>
       <div className={styles.googleBtn}>
