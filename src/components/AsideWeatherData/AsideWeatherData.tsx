@@ -27,7 +27,7 @@ function AsideWeatherData({
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <div className={styles.googleBtn}>
         {authUser && authUser?.token ? (
           <div className={styles.googleWidget}>
@@ -61,7 +61,7 @@ function AsideWeatherData({
       </div>
       <h2 className={styles.cityName}>{address}</h2>
       {tripStart && <Counter tripStart={tripStart} />}
-    </div>
+    </>
   );
 }
 

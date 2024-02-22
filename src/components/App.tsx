@@ -184,22 +184,26 @@ function App() {
               <AddButton handleToggleModal={handleToggleModal} />
             </div>
           </div>
-          {forecastByDates && forecastByDates.days && (
-            <WeatherList forecastByDates={forecastByDates.days} />
+          <div className={styles.containerWeatherList}>
+            {forecastByDates && forecastByDates.days && (
+              <WeatherList forecastByDates={forecastByDates.days} />
+            )}
+          </div>
+        </div>
+        <div className={styles.containerAside}>
+          {forecastByDay && (
+            <AsideWeatherData
+              address={forecastByDay.address}
+              icon={forecastByDay.days[0].icon}
+              temp={forecastByDay.days[0].temp}
+              datetime={forecastByDay.days[0].datetime}
+              description={forecastByDay.days[0].description}
+              tripStart={currentTrip?.startData}
+              setAuthUser={setAuthUser}
+              authUser={authUser}
+            />
           )}
         </div>
-        {forecastByDay && (
-          <AsideWeatherData
-            address={forecastByDay.address}
-            icon={forecastByDay.days[0].icon}
-            temp={forecastByDay.days[0].temp}
-            datetime={forecastByDay.days[0].datetime}
-            description={forecastByDay.days[0].description}
-            tripStart={currentTrip?.startData}
-            setAuthUser={setAuthUser}
-            authUser={authUser}
-          />
-        )}
         {isActive && (
           <Modal
             handleToggleModal={handleToggleModal}
