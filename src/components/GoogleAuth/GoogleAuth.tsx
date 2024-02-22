@@ -16,12 +16,14 @@ const GoogleAuth = ({ setAuthUser }: GoogleAuthProps) => {
           })
           .then(function (response) {
             setAuthUser(response.data.data);
-            // console.log(response);
+            localStorage.setItem(
+              "authUser",
+              JSON.stringify(response.data.data)
+            );
           })
           .catch(function (error) {
             console.log(error);
           });
-        // console.log(credentialResponse);
       }}
       onError={() => {
         console.log("Login Failed");

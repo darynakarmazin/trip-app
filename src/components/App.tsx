@@ -16,31 +16,17 @@ import Modal from "./Modal/Modal";
 import ScrollButtons from "./ScrollButtons/ScrollButtons";
 import AddButton from "./AddButton/AddButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-// import axios from "axios";
-
-const clientId =
-  "2014903271-c0ilok0bph5rnjmi9muqluhsk8hc8ft3.apps.googleusercontent.com";
-
-type AuthUser = {
-  token: string;
-  user: { email: string };
-};
+import { clientId } from "../data/reqId";
+import { fetchData, postNewTrip } from "../api/tripAppBackendApi";
+import { AuthUser } from "../types/authTypes";
 
 function App() {
-  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
-  console.log(authUser);
-  const [trips, setTrips] = useState<Trip[]>(() => {
-    const savedTrips = localStorage.getItem("trips");
-    return savedTrips
-      ? JSON.parse(savedTrips, (key, value) => {
-          if (key.endsWith("Data")) {
-            return new Date(value);
-          }
-          return value;
-        })
-      : [firstTrip];
-  });
+  const [authUser, setAuthUser] = useState<AuthUser | null>(
+    JSON.parse(localStorage.getItem("authUser") || "null")
+  );
+  const [trips, setTrips] = useState<Trip[]>([firstTrip]);
   console.log(trips);
+
   const [currentTrip, setCurrentTrip] = useState<Trip>(trips[0]);
   const [forecastByDates, setForecastByDates] =
     useState<ForecastByDates | null>(null);
@@ -52,32 +38,43 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const containerRef = useRef(null);
 
-  // useEffect(() => {
-  //   if (authUser && authUser.token) {
-  //     const fetchData = async () => {
-  //       try {
-  //         const response = await axios.get(
-  //           "https://trip-app-backend-oyms.onrender.com/api/trips",
-  //           {
-  //             headers: {
-  //               Authorization: `Bearer ${authUser.token}`,
-  //             },
-  //           }
-  //         );
-  //         setTrips(response.data.data.result);
-  //       } catch (error) {
-  //         console.error("Помилка при виконанні запиту:", error);
-  //       }
-  //     };
-  //     fetchData();
-  //   }
-  // }, [authUser]);
+  useEffect(() => {
+    const fetchDataAndUpdateTrips = async () => {
+      if (authUser && authUser.token) {
+        try {
+          const result = await fetchData(authUser.token);
+          const processedTrips = result.map((trip: Trip) => ({
+            ...trip,
+            startData: new Date(trip.startData),
+            endData: new Date(trip.endData),
+          }));
+          setTrips(processedTrips.length > 0 ? processedTrips : [firstTrip]);
+        } catch (error) {
+          console.error("Помилка при завантаженні поїздок:", error);
+        }
+      } else {
+        const savedTrips = localStorage.getItem("trips");
+        setTrips(
+          savedTrips
+            ? JSON.parse(savedTrips, (key, value) => {
+                if (key.endsWith("Data")) {
+                  return new Date(value);
+                }
+                return value;
+              })
+            : [firstTrip]
+        );
+      }
+    };
+
+    fetchDataAndUpdateTrips();
+  }, [authUser]);
 
   useEffect(() => {
-    // if (!authUser || !authUser.token) {
-    localStorage.setItem("trips", JSON.stringify(trips));
-    // }
-  }, [trips]);
+    if (!authUser) {
+      localStorage.setItem("trips", JSON.stringify(trips));
+    }
+  }, [authUser, trips]);
 
   useEffect(() => {
     const filteredArray = trips.filter((trip) =>
@@ -103,8 +100,24 @@ function App() {
     getWeather(currentTrip);
   }, [currentTrip]);
 
-  const handleCreateNewTrip = (newTrip: Trip) => {
-    setTrips([newTrip, ...trips]);
+  const handleCreateNewTrip = async (newTrip: Trip) => {
+    if (authUser && authUser.token) {
+      try {
+        const result = await postNewTrip(authUser.token, newTrip);
+        setTrips([
+          {
+            ...result,
+            startData: new Date(result.startData),
+            endData: new Date(result.endData),
+          },
+          ...trips,
+        ]);
+      } catch (error) {
+        console.error("Помилка при створенні нової поїздки:", error);
+      }
+    } else {
+      setTrips([newTrip, ...trips]);
+    }
   };
 
   const handleCurrentTrip = (thisTrip: Trip) => {
