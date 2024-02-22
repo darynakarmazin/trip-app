@@ -19,7 +19,12 @@ function AsideWeatherData({
     <div className={styles.container}>
       <div className={styles.googleBtn}>
         {authUser && authUser?.token ? (
-          <div>Welcome,{authUser.user.email} </div>
+          <div>
+            Welcome,{authUser.user.email}{" "}
+            <sup>
+              <button className={styles.logoutBnt}>logout</button>
+            </sup>
+          </div>
         ) : (
           <GoogleAuth setAuthUser={setAuthUser} />
         )}
