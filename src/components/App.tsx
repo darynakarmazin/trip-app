@@ -16,7 +16,7 @@ import Modal from "./Modal/Modal";
 import ScrollButtons from "./ScrollButtons/ScrollButtons";
 import AddButton from "./AddButton/AddButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { clientId } from "../env";
+import { clientId } from "../data/reqId";
 import { fetchData, postNewTrip } from "../api/tripAppBackendApi";
 import { AuthUser } from "../types/authTypes";
 

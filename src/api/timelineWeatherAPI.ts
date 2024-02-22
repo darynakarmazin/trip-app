@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Trip } from "../types/tripProps";
-import { API_WEATHER_KEY } from "../env";
+import { API_WEATHER_KEY } from "../data/reqId";
 
 axios.defaults.baseURL =
   "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
