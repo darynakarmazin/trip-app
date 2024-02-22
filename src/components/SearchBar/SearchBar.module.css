@@ -28,5 +28,9 @@
       background-color: #f0eded;
       color: grey;
     }
+    .sortBtn:hover,
+    .sortBtn:focus {
+      background-color: lightgrey;
+    }
   }
 }
