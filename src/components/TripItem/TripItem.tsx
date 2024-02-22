@@ -3,7 +3,7 @@ import { TripProps } from "../../types/tripProps";
 import styles from "./TripItem.module.css";
 
 function TripItem({ trip, selectTrip, currentTrip }: TripProps) {
-  const isCurrent = currentTrip.index === trip.index;
+  const isCurrent = currentTrip?._id === trip._id;
 
   return (
     <li

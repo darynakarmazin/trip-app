@@ -1,17 +1,17 @@
 export interface TripsProps {
   trips: Trip[];
   selectTrip: (trip: Trip) => void;
-  currentTrip: Trip;
+  currentTrip: Trip | null;
 }
 
 export interface TripProps {
   trip: Trip;
   selectTrip: () => void;
-  currentTrip: Trip;
+  currentTrip: Trip | null;
 }
 
 export interface Trip {
-  index: string;
+  _id: string;
   city: string;
   imageUrl: string;
   startData: Date;

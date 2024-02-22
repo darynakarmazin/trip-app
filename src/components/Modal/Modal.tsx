@@ -74,7 +74,7 @@ function Modal({ handleToggleModal, createTrip }: ModalProps) {
     const endDate = selectedEndDate ? new Date(selectedEndDate) : null;
     if (selectedCity?.name && selectedCity?.imageUrl && startDate && endDate) {
       createTrip({
-        index: nanoid(),
+        _id: nanoid(),
         city: selectedCity?.name,
         imageUrl: selectedCity?.imageUrl,
         startData: startDate,
