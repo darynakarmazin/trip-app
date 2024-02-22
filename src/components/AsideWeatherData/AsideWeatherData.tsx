@@ -18,10 +18,11 @@ function AsideWeatherData({
 }: AsideWeatherDataProps) {
   const handleLogout = async () => {
     try {
-      logOut(authUser.token);
+      await logOut(authUser.token);
       setAuthUser(null);
+      localStorage.removeItem("authUser");
     } catch (error) {
-      console.error("Помилка при створенні нової поїздки:", error);
+      console.error(error);
     }
   };
 

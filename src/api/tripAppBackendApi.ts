@@ -41,8 +41,9 @@ export const postNewTrip = async (token: string, newTrip: Trip) => {
 
 export const logOut = async (token: string) => {
   try {
-    const response = await axios.get(
+    const response = await axios.post(
       "https://trip-app-backend-oyms.onrender.com/api/users/logout",
+      {},
       {
         headers: {
           Authorization: `Bearer ${token}`,
