@@ -13,13 +13,65 @@
     top: 16px;
     right: 16px;
 
+    .googleWidget {
+      max-width: 400px;
+      min-width: 200px;
+      transition: background-color 0.218s, border-color 0.218s;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      color: #3c4043;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      padding: 4px;
+      flex-direction: row;
+      gap: 8px;
+
+      .googleWidgetData {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      .img {
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        height: 40px;
+        min-width: 40px;
+        width: 40px;
+      }
+
+      .name {
+        font-family: "Roboto";
+        text-align: left;
+        color: #3c4043;
+        font-size: 14px;
+        font-weight: 500;
+        font-weight: 400;
+      }
+
+      .email {
+        font-family: "Roboto";
+        text-align: left;
+        color: #5f6368;
+        font-size: 12px;
+        font-weight: 400;
+      }
+    }
+
     .logoutBnt {
       background-color: transparent;
       border-radius: 12px;
-      color: white;
+      color: #5f6368;
       padding: 2px;
       font-size: 8px;
-      border: 0.5px solid white;
+      border: 0.5px solid #5f6368;
     }
   }
 

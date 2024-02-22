@@ -30,8 +30,17 @@ function AsideWeatherData({
     <div className={styles.container}>
       <div className={styles.googleBtn}>
         {authUser && authUser?.token ? (
-          <div>
-            Welcome,{authUser.user.email}{" "}
+          <div className={styles.googleWidget}>
+            <div className={styles.googleWidgetData}>
+              <p className={styles.name}>Welcome, {authUser.user.given_name}</p>
+              <p className={styles.email}>{authUser.user.email}</p>
+            </div>
+            <img
+              className={styles.img}
+              width={40}
+              src={authUser.user.picture}
+              alt="avatar"
+            />
             <sup>
               <button className={styles.logoutBnt} onClick={handleLogout}>
                 logout
