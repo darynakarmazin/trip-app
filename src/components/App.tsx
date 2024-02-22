@@ -75,7 +75,7 @@ function App() {
   }, [trips]);
 
   useEffect(() => {
-    if (!authUser) {
+    if (!authUser && trips.length > 0) {
       localStorage.setItem("trips", JSON.stringify(trips));
     }
   }, [authUser, trips]);
