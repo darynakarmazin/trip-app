@@ -161,7 +161,7 @@ function App() {
   };
 
   return (
-    <GoogleOAuthProvider clientId={clientId}>
+    <GoogleOAuthProvider clientId={clientId || ""}>
       <Container>
         <div className={styles.container}>
           <Title />
