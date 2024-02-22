@@ -33,7 +33,7 @@ function AsideWeatherData({
         </p>
       </div>
       <h2 className={styles.cityName}>{address}</h2>
-      <Counter tripStart={tripStart} />
+      {tripStart && <Counter tripStart={tripStart} />}
     </div>
   );
 }

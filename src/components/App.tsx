@@ -24,10 +24,10 @@ function App() {
   const [authUser, setAuthUser] = useState<AuthUser | null>(
     JSON.parse(localStorage.getItem("authUser") || "null")
   );
-  const [trips, setTrips] = useState<Trip[]>([firstTrip]);
+  const [trips, setTrips] = useState<Trip[]>([]);
   console.log(trips);
 
-  const [currentTrip, setCurrentTrip] = useState<Trip>(trips[0]);
+  const [currentTrip, setCurrentTrip] = useState<Trip | null>(null);
   const [forecastByDates, setForecastByDates] =
     useState<ForecastByDates | null>(null);
   const [forecastByDay, setForecastByDay] = useState<ForecastByDay | null>(
@@ -69,6 +69,12 @@ function App() {
 
     fetchDataAndUpdateTrips();
   }, [authUser]);
+
+  useEffect(() => {
+    if (trips.length > 0) {
+      setCurrentTrip(trips[0]);
+    }
+  }, [trips]);
 
   useEffect(() => {
     if (!authUser) {
@@ -191,7 +197,7 @@ function App() {
             temp={forecastByDay.days[0].temp}
             datetime={forecastByDay.days[0].datetime}
             description={forecastByDay.days[0].description}
-            tripStart={currentTrip.startData}
+            tripStart={currentTrip?.startData}
             setAuthUser={setAuthUser}
             authUser={authUser}
           />
