@@ -1,3 +1,4 @@
+import { logOut } from "../../api/tripAppBackendApi";
 import { WeatherAside } from "../../img/icons/Weather";
 import { getDayOfWeek } from "../../servises/getDayOfWeek";
 import { AsideWeatherDataProps } from "../../types/asideWeatherDataProps";
@@ -15,6 +16,15 @@ function AsideWeatherData({
   setAuthUser,
   authUser,
 }: AsideWeatherDataProps) {
+  const handleLogout = async () => {
+    try {
+      logOut(authUser.token);
+      setAuthUser(null);
+    } catch (error) {
+      console.error("Помилка при створенні нової поїздки:", error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.googleBtn}>
@@ -22,7 +32,9 @@ function AsideWeatherData({
           <div>
             Welcome,{authUser.user.email}{" "}
             <sup>
-              <button className={styles.logoutBnt}>logout</button>
+              <button className={styles.logoutBnt} onClick={handleLogout}>
+                logout
+              </button>
             </sup>
           </div>
         ) : (

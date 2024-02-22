@@ -25,8 +25,6 @@ function App() {
     JSON.parse(localStorage.getItem("authUser") || "null")
   );
   const [trips, setTrips] = useState<Trip[]>([]);
-  console.log(trips);
-
   const [currentTrip, setCurrentTrip] = useState<Trip | null>(null);
   const [forecastByDates, setForecastByDates] =
     useState<ForecastByDates | null>(null);
